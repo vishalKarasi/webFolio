@@ -1,0 +1,79 @@
+@use "@src/utils.scss";
+
+#service {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  justify-items: center;
+  gap: 1em;
+
+  article {
+    @extend .flex;
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em 3em;
+    background-color: var(--clr-box);
+    border-radius: 2em;
+    scale: 0.9;
+
+    p {
+      font: var(--font-link);
+    }
+
+    h2 {
+      font: var(--font-sub-head);
+    }
+
+    svg {
+      min-width: 200px;
+      height: auto;
+      background-color: var(--clr-primary);
+      border-radius: 100vmax;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5em;
+      font-style: italic;
+      li {
+        justify-content: flex-start;
+
+        &::before {
+          content: "";
+          border-style: solid;
+          border-width: 0.5em 0 0.5em 0.7em;
+          border-color: transparent transparent transparent var(--clr-primary);
+          position: absolute;
+          left: 1.5em;
+        }
+      }
+    }
+  }
+}
+
+#service {
+  flex-direction: row;
+}
+
+@media (720px < width <= 1024px) {
+  #service {
+    grid-template-columns: 1fr 1fr;
+
+    h1 {
+      grid-column: 1/-1;
+    }
+  }
+}
+@media (1024px < width <= 1500px) {
+  #service {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    h1 {
+      grid-column: 1/-1;
+    }
+  }
+}

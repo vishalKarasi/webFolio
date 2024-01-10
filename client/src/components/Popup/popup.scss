@@ -1,0 +1,32 @@
+@use "@src/utils";
+
+.popup {
+  @extend .flex;
+  position: relative;
+  flex-direction: column;
+  max-width: 80%;
+  gap: 2em;
+  background-color: var(--clr-box);
+  padding: 1em;
+  border-radius: 1em;
+
+  .closeBtn {
+    width: 3em;
+  }
+
+  img {
+    aspect-ratio: 1/1;
+  }
+
+  img,
+  .details {
+    width: 100%;
+  }
+}
+
+@media (1024px < width <= 1500px) {
+  .popup {
+    flex-direction: row;
+    height: 75%;
+  }
+}

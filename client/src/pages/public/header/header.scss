@@ -1,0 +1,120 @@
+@use "@src/utils.scss";
+
+#header {
+  position: sticky;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  top: 0;
+  z-index: 99;
+  row-gap: 0.5em;
+  padding-block: 0.5em;
+  background-color: var(--clr-box);
+
+  .setting,
+  nav {
+    border-radius: 100vmax;
+  }
+
+  nav {
+    @extend .flex;
+    grid-row: 2;
+    grid-column: span 2;
+  }
+
+  .setting {
+    @extend .flex;
+    .theme {
+      input {
+        display: none;
+      }
+    }
+    .menu {
+      display: none;
+    }
+  }
+
+  .theme,
+  .login,
+  nav > * {
+    @extend .flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0.2em;
+
+    .label {
+      @extend .flex;
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      color: var(--clr-primary);
+      font: var(--font-link);
+      border-radius: 100vmax;
+      box-shadow: inset 0.2rem 0.2rem 0.1rem var(--clr-btn),
+        0.2rem 0.2rem 0.1rem var(--clr-btn);
+      scale: 0;
+      opacity: 0;
+      transition: all 0.2s linear;
+    }
+
+    &:hover .label,
+    & svg {
+      scale: 1;
+      opacity: 1;
+    }
+
+    &:hover svg,
+    &.label {
+      scale: 0;
+      opacity: 0;
+    }
+  }
+}
+
+@media (720px < width <= 1024px) {
+  #header {
+    grid-template-columns: 1fr 1fr auto;
+    .logo {
+      margin-right: 3em;
+    }
+    .setting {
+      margin-left: 3em;
+      .menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1em;
+      }
+    }
+
+    nav {
+      flex-direction: column;
+      gap: 2em;
+      width: 20%;
+      position: fixed;
+      right: -20%;
+      top: 50%;
+      background-color: var(--clr-box);
+      padding-block: 2em;
+      border-radius: 100vmax;
+      transform: translateY(-50%);
+      transition: all 0.3s linear;
+
+      &.active {
+        right: 0.5em;
+      }
+    }
+  }
+}
+
+@media (1024px < width <= 1500px) {
+  #header {
+    grid-template-columns: 2fr 5fr 2fr;
+    gap: 4em;
+
+    nav {
+      grid-row: initial;
+      grid-column: span 1;
+    }
+  }
+}

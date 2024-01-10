@@ -1,0 +1,118 @@
+@use "./utils.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+body {
+  background-color: var(--clr-bg);
+}
+
+body,
+input,
+textarea {
+  font: var(--font-body);
+  color: var(--clr-font);
+}
+
+#root {
+  position: relative;
+  min-width: 340px;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  min-height: calc(100vh - 5em);
+  padding: 2vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+section {
+  @extend .flex;
+  width: 100%;
+}
+
+h1 {
+  font: var(--font-head);
+  color: var(--clr-primary);
+  text-align: center;
+}
+
+h2 {
+  font: var(--font-sub-head);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  font-style: italic;
+}
+
+li {
+  @extend .flex;
+  list-style-type: none;
+  width: 100%;
+}
+
+a:hover,
+li:hover,
+button:hover,
+.label:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr-font);
+  transition: all 0.2s linear;
+
+  &:hover {
+    color: var(--clr-primary);
+  }
+
+  &.active {
+    color: var(--clr-primary);
+    border-bottom: 0.4em solid var(--clr-primary);
+    border-radius: 0.5em;
+  }
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 5em;
+  max-height: 10em;
+}
+
+svg {
+  @extend .flex;
+  width: 2em;
+  height: 2em;
+}
+
+span {
+  color: var(--clr-primary);
+}
+
+@media (800px < width <= 1500px) {
+  main {
+    min-height: calc(100vh - 3.75em);
+    padding: 1vw 4vw;
+  }
+}

@@ -1,0 +1,75 @@
+@use "@src/utils.scss";
+@use "@components/button/button.scss";
+
+#home {
+  @extend .flex;
+  flex-direction: column;
+  gap: 1.5em;
+
+  img {
+    border-radius: 100vmax;
+    width: 70%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+
+    .intro {
+      text-align: center;
+
+      span {
+        font-size: 2em;
+        font-family: ubuntu;
+        font-weight: 700;
+      }
+    }
+
+    .socialLink {
+      @extend .flex;
+      gap: 1em;
+      font-size: 1.5em;
+
+      li {
+        transition: all 0.4s linear;
+      }
+
+      li:hover {
+        scale: 1.25;
+        color: var(--clr-primary);
+      }
+    }
+
+    .redirect {
+      @extend .flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 1em;
+
+      & > * {
+        @extend .btnPrimary;
+        width: 100%;
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+@media (800px < width <= 1500px) {
+  #home {
+    flex-direction: row;
+
+    & > * {
+      scale: 0.9;
+    }
+
+    .info {
+      .redirect {
+        width: 80%;
+      }
+    }
+  }
+}

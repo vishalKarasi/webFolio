@@ -1,0 +1,32 @@
+@use "@src/utils";
+
+.swiper {
+  width: 100%;
+  background-color: var(--clr-btn);
+
+  .swiper-wrapper {
+    z-index: inherit;
+    .swiper-slide {
+      @extend .flex;
+      width: 275px;
+      aspect-ratio: 2/3;
+      margin: 1.25em;
+    }
+  }
+
+  .swiper-pagination {
+    @extend .flex;
+    .swiper-pagination-bullet {
+      transition: width 0.4s ease;
+      background-color: var(--clr-btn);
+      opacity: 0.4;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: var(--clr-primary);
+      width: 1em;
+      border-radius: 1em;
+      opacity: 1;
+    }
+  }
+}

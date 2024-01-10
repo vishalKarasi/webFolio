@@ -1,0 +1,74 @@
+@use "@src/utils.scss";
+
+#footer {
+  @extend .flex;
+  flex-direction: column;
+  padding: 1em;
+  gap: 1em;
+  background-color: var(--clr-box);
+
+  & > * {
+    @extend .flex;
+    width: 100%;
+  }
+
+  .socialLink {
+    li {
+      @extend .flex;
+      width: 4em;
+      height: 3em;
+      transform: skew(-30deg);
+      border-left: 0.2em solid var(--clr-btn);
+
+      &:hover {
+        box-shadow: inset 0.1em 0.1em 1em var(--clr-btn);
+      }
+
+      &:last-child {
+        border-right: 0.2em solid var(--clr-btn);
+      }
+
+      svg {
+        width: 2.5em;
+        height: 2.5em;
+        transform: skew(30deg);
+      }
+    }
+  }
+
+  .sitemap {
+    a {
+      font: var(--font-link);
+      padding: 0.25em 0.5em;
+      border-radius: 0.25em;
+      &:hover {
+        background-color: var(--clr-btn);
+      }
+    }
+  }
+
+  article {
+    flex-direction: column;
+    gap: 0.5em;
+
+    .policy {
+      @extend .flex;
+      a {
+        @extend .flex;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+      }
+
+      .divider {
+        width: 0.2em;
+        height: 2em;
+        background-color: var(--clr-btn);
+      }
+    }
+
+    .copyright {
+      @extend .flex;
+      flex-direction: column;
+    }
+  }
+}

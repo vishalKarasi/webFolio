@@ -1,0 +1,37 @@
+@use "@src/utils";
+
+#admin {
+  .messageContainer {
+    display: grid;
+    gap: 1em;
+
+    .message {
+      position: relative;
+      background-color: var(--clr-box);
+      box-shadow: 0 0 0.2em 0.2em var(--clr-btn);
+      border-radius: 1em;
+      padding: 0.5em;
+
+      & > * {
+        display: flex;
+        align-items: center;
+        label {
+          min-width: 25%;
+          font: var(--font-link);
+          color: var(--clr-primary);
+        }
+        p {
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+}
+
+@media (1024px < width <= 1500px) {
+  #admin {
+    .messageContainer {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

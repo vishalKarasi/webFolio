@@ -1,0 +1,56 @@
+table {
+  width: 100%;
+  border-spacing: 1em;
+
+  th {
+    display: none;
+  }
+
+  tr {
+    background-color: var(--clr-box);
+
+    &:nth-child(2n) {
+      background-color: var(--clr-btn);
+    }
+  }
+
+  td {
+    display: flex;
+    padding: 0.5em;
+
+    &:last-child {
+      button {
+        width: 100%;
+      }
+    }
+
+    &::before {
+      content: attr(head);
+      color: var(--clr-primary);
+      min-width: 30%;
+      padding-right: 1em;
+    }
+  }
+}
+
+@media (1024px < width <= 1500px) {
+  table {
+    border-spacing: 0.2em;
+    th {
+      display: table-cell;
+      padding: 0.5em;
+    }
+    td {
+      display: table-cell;
+      text-align: center;
+
+      &::before {
+        content: none !important;
+      }
+
+      button:last-child {
+        margin-top: 0.5em;
+      }
+    }
+  }
+}

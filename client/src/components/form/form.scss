@@ -1,0 +1,123 @@
+@use "@src/utils";
+
+.formContainer {
+  position: relative;
+  min-width: 350px;
+  max-width: fit-content;
+  padding: 1em 1.5em;
+  border-radius: 1em;
+  background-color: var(--clr-box);
+  box-shadow: 0 0 1em 0.25em var(--clr-btn);
+  background-color: var(--clr-bg);
+
+  h1 {
+    margin-bottom: 0.75em;
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 0.75em;
+
+  .inputField {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+
+    .inputLabel {
+      @extend .flex;
+      background-color: var(--clr-box);
+      position: absolute;
+      height: 3em;
+      left: 0.5em;
+      border-radius: 100vmax;
+      aspect-ratio: 3/2;
+      pointer-events: none;
+    }
+
+    .input {
+      background-color: var(--clr-box);
+      grid-column: 1/-1;
+      height: 3em;
+      padding: 1em 3em 1em 0.5em;
+      border-radius: 0.25em;
+
+      &:is(:focus, .focused) {
+        border: 0.1em solid var(--clr-invalid);
+      }
+
+      &:valid {
+        border: 0.1em solid var(--clr-valid);
+      }
+
+      &:is(:focus, :valid, .focused) ~ .inputLabel {
+        top: -0.75em;
+        scale: 0.75;
+        padding-inline: 1em;
+        height: 1.5em;
+      }
+
+      &:invalid ~ .inputError.focused {
+        visibility: visible;
+      }
+
+      &:valid ~ .inputError.focused {
+        visibility: hidden;
+      }
+
+      &:is(:focus, .focused) ~ .inputLabel {
+        color: var(--clr-invalid);
+        border-top: 0.15em solid var(--clr-invalid);
+      }
+
+      &:valid ~ .inputLabel {
+        color: var(--clr-valid);
+        border-top: 0.15em solid var(--clr-valid);
+      }
+
+      &:is(:focus, .focused) ~ svg {
+        color: var(--clr-invalid);
+      }
+
+      &:valid ~ svg {
+        color: var(--clr-valid);
+      }
+    }
+
+    svg {
+      @extend .flex;
+      position: absolute;
+      right: 0.5em;
+      height: 3em;
+      scale: 0.75;
+    }
+
+    .inputError {
+      grid-row: 2;
+      padding-left: 0.5em;
+      color: var(--clr-invalid);
+      font-size: 0.75em;
+      visibility: hidden;
+    }
+  }
+}
+
+@media (1024px < width <= 1500px) {
+  .adminForm {
+    grid-template-columns: 1fr 1fr;
+
+    & > *:nth-child(n + 3) {
+      grid-column: 1/-1;
+    }
+
+    button {
+      grid-column: 1/-1;
+    }
+
+    .closeBtn {
+      right: -2.75em;
+    }
+  }
+}

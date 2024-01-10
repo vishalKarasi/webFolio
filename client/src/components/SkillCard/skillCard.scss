@@ -1,0 +1,50 @@
+@use "@src/utils.scss";
+
+.skillCard {
+  @extend .flex;
+  gap: 1em;
+  padding: 1em;
+  background-color: var(--boxColor);
+  box-shadow: 0.2em 0.2em 0.4em 0.2em var(--clr-btn);
+  border-radius: 0 100vmax 0 100vmax;
+
+  img {
+    @extend .flex;
+    width: 30%;
+    aspect-ratio: 1/1;
+    padding: 0.5em;
+    border-radius: 100vmax;
+    background-color: var(--clr-btn);
+    box-shadow: 0 0 0 0.4em var(--clr-bg);
+  }
+
+  .levels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 70%;
+
+    & > * {
+      @extend .flex;
+      border-radius: 0 100vmax 0 100vmax;
+
+      &::after {
+        text-align: center;
+        content: attr(level-label);
+        transform: scale(0);
+        color: black;
+        transition: all 0.5s ease-in-out;
+      }
+
+      &:hover::after {
+        transform: scale(0.9);
+      }
+    }
+  }
+}
+
+@media (1024px < width <= 1500px) {
+  // .skillCard {
+  //   width: 350px;
+  // }
+}

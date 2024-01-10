@@ -1,0 +1,37 @@
+@use "@src/utils.scss";
+
+#work {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  .projectContainer {
+    @extend .flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    .card {
+      @extend .flex;
+      position: relative;
+      max-width: 300px;
+      aspect-ratio: 1/1;
+      border-radius: 2rem 0 2rem 0;
+      overflow: hidden;
+
+      .cardContent {
+        @extend .flex;
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        inset: 0 auto 0 auto;
+        justify-content: flex-end;
+        padding: 1rem;
+        gap: 1rem;
+        background-color: rgba(0, 0, 0, 0.5);
+
+        .cardTitle {
+          color: white;
+          font-size: 1.75rem;
+        }
+      }
+    }
+  }
+}
