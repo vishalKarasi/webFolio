@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
+import React, { lazy, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import LazyLoad from "./utils/LazyLoad.js";
-import { refreshToken } from "./services/authSlice.js";
-import PublicRoute from "./utils/PublicRoute.jsx";
-import PrivateRoute from "./utils/PrivateRoute.jsx";
+import { refreshToken } from "../app/services/authSlice.js";
 
-const Auth = LazyLoad("../../pages/public/auth/Auth.jsx");
-const Home = LazyLoad("../../pages/public/home/Home.jsx");
-const About = LazyLoad("../../pages/public/about/About.jsx");
-const Work = LazyLoad("../../pages/public/work/Work.jsx");
-const Service = LazyLoad("../../pages/public/service/Service.jsx");
-const Review = LazyLoad("../../pages/public/review/Review.jsx");
-const Contact = LazyLoad("../../pages/public/contact/Contact.jsx");
-const PageNotFound = LazyLoad("../../pages/PageNotFound.jsx");
+const PublicRoute = lazy(() => import("./routes/PublicRoute.jsx"));
+const PrivateRoute = lazy(() => import("./routes/PrivateRoute.jsx"));
 
-const Admin = LazyLoad("../../pages/private/Admin.jsx");
-const EditExperience = LazyLoad("../../pages/private/EditExperience.jsx");
-const EditExpertise = LazyLoad("../../pages/private/EditExpertise.jsx");
-const EditProject = LazyLoad("../../pages/private/EditProject.jsx");
+const Auth = lazy(() => import("./public/auth/Auth.jsx"));
+const Home = lazy(() => import("./public/home/Home.jsx"));
+const About = lazy(() => import("./public/about/About.jsx"));
+const Work = lazy(() => import("./public/work/Work.jsx"));
+const Service = lazy(() => import("./public/service/Service.jsx"));
+const Review = lazy(() => import("./public/review/Review.jsx"));
+const Contact = lazy(() => import("./public/contact/Contact.jsx"));
+const PageNotFound = lazy(() => import("./PageNotFound.jsx"));
+
+const Admin = lazy(() => import("./private/Admin.jsx"));
+const EditExperience = lazy(() => import("./private/EditExperience.jsx"));
+const EditExpertise = lazy(() => import("./private/EditExpertise.jsx"));
+const EditProject = lazy(() => import("./private/EditProject.jsx"));
 
 function App() {
   const dispatch = useDispatch();

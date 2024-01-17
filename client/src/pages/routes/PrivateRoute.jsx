@@ -1,8 +1,7 @@
-import React from "react";
+import React, { lazy } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-import LazyLoad from "./LazyLoad.js";
-const Header = LazyLoad("../../pages/public/header/Header.jsx");
+const Header = lazy(() => import("@pages/public/header/Header.jsx"));
 
 const PrivateRoute = () => {
   const { accessToken, status } = useSelector((state) => state.auth);
