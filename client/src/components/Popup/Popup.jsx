@@ -24,7 +24,7 @@ function Popup() {
           <p>{popupData.description}</p>
           <p>{popupData.technologies}</p>
           <p>{popupData.date}</p>
-          <p>{popupData.url}</p>
+          <a href={popupData.url}>Demo</a>
         </div>
         <Button
           icon={<Cancel />}

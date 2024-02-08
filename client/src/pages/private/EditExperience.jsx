@@ -20,7 +20,6 @@ function EditExperience() {
   const columns = [
     { key: "company", header: "Company" },
     { key: "position", header: "Position" },
-    { key: "description", header: "Description" },
     { key: "image", header: "Image" },
     { key: "technologies", header: "Technologies" },
     { key: "startDate", header: "StartDate" },

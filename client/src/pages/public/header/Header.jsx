@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Navlink from "@components/Navlink.jsx";
 import { setTheme, toggleMode, toggle } from "@app/services/uiSlice.js";
@@ -26,8 +26,9 @@ import {
 import { logout } from "@app/services/authSlice";
 
 function Header({ type }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { accessToken } = useSelector((state) => state.auth);
+  const { accessToken, status } = useSelector((state) => state.auth);
   const { theme, mode, menu } = useSelector((state) => state.ui);
 
   const NavData =
@@ -91,7 +92,14 @@ function Header({ type }) {
         </li>
 
         {type === "Admin" ? (
-          <Link className="login" onClick={() => dispatch(logout())}>
+          <Link
+            className="login"
+            onClick={() =>
+              dispatch(logout()).then(() => {
+                if (status === "success") navigate("/");
+              })
+            }
+          >
             <div className="label">Logout</div>
             <Logout />
           </Link>

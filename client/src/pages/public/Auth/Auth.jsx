@@ -36,7 +36,7 @@ function Auth() {
       icon: <Password />,
       pattern:
         "^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^0-9A-Za-z]).{8,32}$",
-      errorMessage: "Please enter a valid password",
+      errorMessage: "1 Capital, Small, Number, Symbol and Atleast 8 letter",
     },
   ];
 

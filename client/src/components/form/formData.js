@@ -48,12 +48,6 @@ export const experienceInput = [
     errorMessage: "Position required",
   },
   {
-    label: "Description",
-    type: "text",
-    name: "description",
-    errorMessage: "Description required",
-  },
-  {
     label: "Technologies",
     type: "text",
     name: "technologies",

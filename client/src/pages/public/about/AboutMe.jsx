@@ -17,7 +17,7 @@ function AboutMe() {
       name: "L.S Raheja College",
       year: "2018-2020",
       education: "Higher Secondary Certification",
-      grade: "79%",
+      grade: "77%",
     },
     {
       image: college,

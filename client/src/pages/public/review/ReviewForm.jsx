@@ -33,7 +33,9 @@ function ReviewForm() {
       type: "number",
       name: "rating",
       errorMessage: "Rating required",
-      pattern: /^[1-5]$/,
+      // pattern: /^[1-5]$/,
+      min: 1,
+      max: 5,
     },
   ];
 
@@ -54,8 +56,8 @@ function ReviewForm() {
           onSubmit={handleSubmit}
           className="form"
         >
-          {INPUTS.map((input) => (
-            <Input key={input.label} {...input} />
+          {INPUTS.map((input, index) => (
+            <Input {...input} key={index} />
           ))}
           <div className="inputField">
             <textarea

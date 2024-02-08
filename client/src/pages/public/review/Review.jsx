@@ -27,7 +27,7 @@ function Review() {
       ) : (
         <Carousel>
           {REVIEWS.map((review) => (
-            <ReviewCard {...review} key={review._id} />
+            <ReviewCard {...review} key={review.id} />
           ))}
         </Carousel>
       )}

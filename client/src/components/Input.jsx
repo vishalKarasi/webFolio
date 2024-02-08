@@ -9,12 +9,12 @@ function Input(props) {
       <input
         className={isFocus ? "input focused" : "input"}
         pattern={pattern}
-        {...input}
         onBlur={() => setFocus(true)}
         autoComplete="off"
         required
         min={5}
         max={25}
+        {...input}
       />
       {label && <label className="inputLabel">{label}</label>}
       {icon && icon}

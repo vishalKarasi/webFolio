@@ -22,13 +22,15 @@ export const login = async (req, res, next) => {
     const refreshToken = createToken("refreshToken", ADMIN_ID);
 
     res.cookie("refresh_token", refreshToken, {
-      httpOnly: true,
-      sameSite: "strict",
-      secure: true,
+      domain: process.env.DOMAIN,
+      path: "/",
       maxAge: parseInt(process.env.MAX_AGE, 10),
+      httpOnly: true,
+      secure: true,
+      sameSite: "Strict",
     });
 
-    res.status(200).json({ message: "Login successful", accessToken });
+    return res.status(200).json({ message: "Login successful", accessToken });
   } catch (error) {
     next(error);
   }
@@ -42,13 +44,9 @@ export const logout = async (req, res, next) => {
       return res.status(400).json({ message: "Cookie not found" });
     }
 
-    res.clearCookie("refresh_token", {
-      httpOnly: true,
-      sameSite: "strict",
-      secure: true,
-    });
+    res.clearCookie("refresh_token");
 
-    res.status(200).json({ message: "Logout successful" });
+    return res.status(200).json({ message: "Logout successful" });
   } catch (error) {
     next(error);
   }

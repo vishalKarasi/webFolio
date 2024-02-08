@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { promisify } from "util";
 const DELETE_PROMISE = promisify(fs.unlink);
+const uploadsDir = path.join(import.meta.dirname, "..", "uploads");
 
 export const getOne = (Model) => async (req, res, next) => {
   try {
@@ -52,7 +53,7 @@ export const createOne = (Model) => async (req, res, next) => {
 
     const data = await Model.create(body);
 
-    res
+    return res
       .status(200)
       .json({ message: `Create ${Model.modelName} successfully`, data });
   } catch (error) {
@@ -70,13 +71,13 @@ export const updateOne = (Model) => async (req, res, next) => {
     if (req.file) {
       body.image = `${process.env.SERVER_URL}/uploads/${req.file.filename}`;
       await DELETE_PROMISE(
-        path.join(process.env.UPLOADS_DIR, path.basename(prevData.image))
+        path.join(uploadsDir, path.basename(prevData.image))
       );
     }
 
     const data = await Model.findByIdAndUpdate(id, body, { new: true });
 
-    res
+    return res
       .status(200)
       .json({ message: `Update ${Model.modelName} successfully`, data });
   } catch (error) {
@@ -88,14 +89,17 @@ export const deleteOne = (Model) => async (req, res, next) => {
   try {
     const { id } = req.params;
     const prevData = await Model.findById(id);
+
     if (prevData.image) {
       await DELETE_PROMISE(
-        path.join(process.env.UPLOADS_DIR, path.basename(prevData.image))
+        path.join(uploadsDir, path.basename(prevData.image))
       );
     }
 
     await Model.findByIdAndDelete(id);
-    res.status(200).json({ message: `Delete ${Model.modelName} successfully` });
+    return res
+      .status(200)
+      .json({ message: `Delete ${Model.modelName} successfully` });
   } catch (error) {
     next(error);
   }

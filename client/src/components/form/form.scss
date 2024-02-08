@@ -2,7 +2,7 @@
 
 .formContainer {
   position: relative;
-  min-width: 350px;
+  min-width: 360px;
   max-width: fit-content;
   padding: 1em 1.5em;
   border-radius: 1em;
@@ -27,7 +27,9 @@
     grid-template-rows: auto auto;
 
     .inputLabel {
-      @extend .flex;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
       background-color: var(--clr-box);
       position: absolute;
       height: 3em;
