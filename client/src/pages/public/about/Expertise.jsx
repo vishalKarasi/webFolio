@@ -6,7 +6,19 @@ import Model from "@src/components/model/Model.jsx";
 
 function Expertise() {
   const dispatch = useDispatch();
-  const { EXPERTISES, status } = useSelector((state) => state.expertise);
+  const { EXPERTISES, status, message } = useSelector(
+    (state) => state.expertise
+  );
+
+  const expertise = EXPERTISES.map((expertise) => {
+    return (
+      <SkillCard
+        key={expertise._id}
+        level={expertise.level}
+        image={expertise.image}
+      />
+    );
+  });
 
   useEffect(() => {
     dispatch(getExpertise());
@@ -14,20 +26,10 @@ function Expertise() {
 
   return (
     <>
+      {status === "loading" && <Model type="loading" />}
       <h1>Expertise</h1>
-      {EXPERTISES.length === 0 ? (
-        <Model type="error" messaage="No Skills" />
-      ) : (
-        EXPERTISES.map((expertise) => {
-          return (
-            <SkillCard
-              key={expertise._id}
-              level={expertise.level}
-              image={expertise.image}
-            />
-          );
-        })
-      )}
+      {status === "success" && expertise}
+      {status === "error" && <Model type="error" messaage={message} />}
     </>
   );
 }

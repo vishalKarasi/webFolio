@@ -4,11 +4,13 @@
   @extend .flex;
   position: relative;
   flex-direction: column;
-  max-width: 80%;
+  max-width: 70%;
+  max-height: 75%;
   gap: 2em;
   background-color: var(--clr-box);
   padding: 1em;
   border-radius: 1em;
+
 
   .closeBtn {
     width: 3em;
@@ -22,11 +24,22 @@
   .details {
     width: 100%;
   }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    a {
+      background-color: var(--clr-btn);
+      width: fit-content;
+      padding: 0.5em 2em;
+    }
+  }
 }
 
 @media (1024px < width <= 1500px) {
   .popup {
     flex-direction: row;
-    height: 75%;
   }
 }

@@ -69,7 +69,6 @@ export const reviewSlice = createSlice({
         state.status = "success";
         state.message = payload.message;
         state.REVIEWS = payload.data;
-        toast.success(state.message);
       })
       .addCase(getReview.rejected, (state, { error }) => {
         state.status = "error";

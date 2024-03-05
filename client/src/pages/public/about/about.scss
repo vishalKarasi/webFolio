@@ -1,62 +1,16 @@
 @use "@src/utils.scss";
 
 #about {
-  gap: 2em;
   section {
     display: grid;
-    align-content: flex-start;
+    align-items: start;
     gap: 2em;
   }
 
   .AboutMe {
-    article {
-      width: 100%;
-      text-align: center;
-      padding: 1em;
-      box-shadow: 0 0 0.5em 0.1em var(--clr-box);
-    }
-
-    .quote {
-      text-align: center;
-      font-family: ubuntu;
-      padding: 1em;
-      box-shadow: 0 0 0.5em 0.1em var(--clr-box);
-      vertical-align: middle;
-
-      span {
-        text-decoration: line-through;
-        font-size: 0.75em;
-      }
-    }
-
-    .info {
-      @extend .flex;
-      gap: 1em;
-
-      ul {
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-        width: 100%;
-        padding: 0.5em;
-
-        li {
-          position: relative;
-        }
-
-        li::before {
-          content: "";
-          border-style: solid;
-          border-width: 0.5em 0 0.5em 0.7em;
-          border-color: transparent transparent transparent var(--clr-primary);
-          position: absolute;
-          left: -0.4em;
-        }
-      }
-    }
-
-    .education {
-      display: grid;
+    .personalInfo {
+      display: flex;
+      flex-direction: column;
       gap: 1em;
 
       h2 {
@@ -64,152 +18,158 @@
       }
 
       article {
+        text-align: center;
+        padding: 1em;
+        box-shadow: 0 0 0.5em 0.1em var(--clr-box);
+      }
+
+      .quote {
+        text-align: center;
+        font-family: ubuntu;
+        padding: 1em;
+        box-shadow: 0 0 0.5em 0.1em var(--clr-box);
+        vertical-align: middle;
+
+        span {
+          text-decoration: line-through;
+          font-size: 0.75em;
+        }
+      }
+
+      .info {
         @extend .flex;
         gap: 1em;
-        flex-direction: column;
-        position: relative;
-        padding: 4em;
-        border-radius: 1em;
 
-        &::before {
-          content: "";
-          position: absolute;
-          inset: 0 0 0 0;
-          background-color: rgba($color: #000000, $alpha: 0.5);
-          border-radius: 1em;
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
+          width: 100%;
+          padding: 0.5em;
+
+          li {
+            position: relative;
+          }
+
+          li::before {
+            content: "";
+            border-style: solid;
+            border-width: 0.5em 0 0.5em 0.7em;
+            border-color: transparent transparent transparent var(--clr-primary);
+            position: absolute;
+            left: -0.4em;
+          }
+        }
+      }
+    }
+
+    .education {
+      display: grid;
+      grid-template-rows: auto 1fr 1fr 1fr;
+      align-content: flex-start;
+      gap: 1em;
+      height: 100%;
+
+      h2 {
+        text-align: center;
+      }
+
+      article {
+        position: relative;
+        box-shadow: 0 0 0.5em 0.1em var(--clr-box);
+        @extend .flex;
+        flex-direction: column;
+        gap: 0.5em;
+        padding: 0.5em;
+        text-align: center;
+        overflow: hidden;
+
+        &:hover > img {
+          left: 100%;
+          opacity: 0;
         }
 
         img {
           position: absolute;
+          left: 0;
+          opacity: 1;
           width: 100%;
-          z-index: -1;
-          border-radius: 1em;
-        }
-
-        & > *:not(img) {
-          z-index: 10;
-          scale: 1.2;
-          width: 100%;
-          color: white;
-        }
-        strong {
-          color: var(--clr-primary);
-          font: var(--font-link);
+          filter: brightness(0.8);
+          transition: all 0.5s ease-in-out;
         }
 
         .row {
-          @extend .flex;
-          gap: 4em;
-          align-items: center;
-
-          & > * {
-            background-color: var(--clr-primary);
-            border-radius: 0.5em;
-            padding: 0.25em 0.5em;
-            pointer-events: none;
-          }
+          display: flex;
+          gap: 2em;
         }
       }
     }
   }
 
   .Experience {
+    justify-content: stretch;
     article {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      background-color: var(--clr-box);
-      padding: 1em;
-      border-radius: 0.5em;
+      display: grid;
       gap: 0.5em;
+      position: relative;
+      box-shadow: 0 0 0.5em 0.1em var(--clr-box);
+      padding: 1em;
+      overflow: hidden;
+
+      [label]::before {
+        content: attr(label);
+        color: var(--clr-primary);
+        min-width: 35%;
+        margin-right: 1em;
+      }
+      p {
+        display: flex;
+        justify-content: flex-start;
+      }
 
       &:hover > img {
-        visibility: visible;
-        scale: 1;
+        left: 100%;
+        opacity: 0;
       }
 
       img {
         position: absolute;
-        inset: 0 0 auto;
         width: 100%;
-        border-radius: 0.5em;
-        scale: 0;
-        visibility: hidden;
+        top: 0;
+        left: 0;
+        opacity: 0;
         transition: all 0.4s ease-in-out;
       }
+    }
+  }
+}
 
-      div {
-        display: flex;
-        gap: 1em;
-
-        label {
-          font-family: ubuntu;
-          width: 25%;
-          color: var(--clr-primary);
-        }
-
-        p {
-          @extend .flex;
-          font-size: 0.9em;
-        }
-      }
+@media (720px < width <= 1024px) {
+  #about {
+    .Expertise {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    h1 {
+      grid-column: 1/-1;
     }
   }
 }
 
 @media (1024px < width <= 1500px) {
   #about {
-    flex-direction: row;
-
-    .AboutMe {
-      grid-template-columns: 60% 40%;
-
-      h1 {
-        grid-column: 1/-1;
-      }
-
-      .intro {
-        grid-column: 1;
-        grid-row: span 2;
-      }
-
-      .info {
-        grid-column: 2;
-        grid-row: 2;
-      }
-
-      .quote {
-        grid-column: 2;
-        grid-row: 3;
-      }
-
-      .education {
-        grid-column: 1/-1;
-        grid-template-columns: 1fr 1fr;
-
-        h2 {
-          grid-column: 1/-1;
-        }
-
-        article {
-          scale: 0.9;
-        }
-      }
-    }
-
-    .Experience {
+    section {
+      display: grid;
       grid-template-columns: 1fr 1fr;
+
       h1 {
         grid-column: 1/-1;
       }
     }
 
     .Expertise {
-      grid-template-columns: 1fr 1fr;
-
-      h1 {
-        grid-column: 1/-1;
-      }
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 }

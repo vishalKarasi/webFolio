@@ -1,7 +1,7 @@
 import React from "react";
 import "./form.scss";
 import { useDispatch, useSelector } from "react-redux";
-import Input from "@components/Input.jsx";
+import Input from "@src/components/input/Input.jsx";
 import Button from "@src/components/button/Button.jsx";
 import { Cancel, Tick } from "@assets/icons/ButtonIcons.jsx";
 import { setEditMode, toggle } from "@src/app/services/uiSlice.js";

@@ -1,6 +1,6 @@
 import React from "react";
 import "@components/form/form.scss";
-import Input from "@components/Input.jsx";
+import Input from "@src/components/input/Input.jsx";
 import { Cancel, Send } from "@assets/icons/ButtonIcons.jsx";
 import Button from "@src/components/button/Button.jsx";
 import { toggle } from "@src/app/services/uiSlice.js";

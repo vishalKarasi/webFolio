@@ -4,10 +4,10 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import path from "path";
 import { errorHandler } from "./middlewares/errorHandler.js";
-const app = express();
 dotenv.config();
+
+const app = express();
 
 // import routes
 import authRoute from "./routes/auth.js";
@@ -20,8 +20,8 @@ import reviewRoute from "./routes/review.js";
 // middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.json({ limit: "20mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "20mb", extended: true }));
+app.use(bodyParser.json({ limit: "10mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 app.use(
   cors({
     origin: [process.env.CLIENT_URL],
@@ -31,8 +31,8 @@ app.use(
   })
 );
 
-const __dirname = import.meta.dirname;
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// const __dirname = import.meta.dirname;
+// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // routes
 app.use("/auth", authRoute);

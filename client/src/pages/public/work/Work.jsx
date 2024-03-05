@@ -11,38 +11,40 @@ import Model from "@src/components/model/Model.jsx";
 function Work() {
   const dispatch = useDispatch();
   const { popup } = useSelector((state) => state.ui);
-  const { PROJECTS } = useSelector((state) => state.project);
+  const { PROJECTS, status, message } = useSelector((state) => state.project);
 
   useEffect(() => {
     dispatch(getProject());
   }, [dispatch]);
 
+  const projects = (
+    <section className="projectContainer">
+      {PROJECTS.map((project) => (
+        <article key={project._id} className="card">
+          <img src={project.image} className="cardImg" />
+          <div className="cardContent">
+            <h1 className="cardTitle">{project.title}</h1>
+            <Button
+              label="More&nbsp;Info"
+              icon={<ViewMore />}
+              className="btnPrimary"
+              onClick={() => {
+                dispatch(toggle("popup"));
+                dispatch(setId(project._id));
+              }}
+            />
+          </div>
+        </article>
+      ))}
+    </section>
+  );
+
   return (
     <main id="work">
       <h1>Work</h1>
-      <section className="projectContainer">
-        {PROJECTS.length === 0 ? (
-          <Model type="error" messaage="No Projects" />
-        ) : (
-          PROJECTS.map((project) => (
-            <article key={project._id} className="card">
-              <img src={project.image} className="cardImg" />
-              <div className="cardContent">
-                <h1 className="cardTitle">{project.title}</h1>
-                <Button
-                  label="More&nbsp;Info"
-                  icon={<ViewMore />}
-                  className="btnPrimary"
-                  onClick={() => {
-                    dispatch(toggle("popup"));
-                    dispatch(setId(project._id));
-                  }}
-                />
-              </div>
-            </article>
-          ))
-        )}
-      </section>
+      {status === "loading" && <Model type="loading" />}
+      {status === "success" && projects}
+      {status === "error" && <Model type="error" messaage={message} />}
       {popup && <Popup />}
     </main>
   );

@@ -1,8 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { promisify } from "util";
-const DELETE_PROMISE = promisify(fs.unlink);
-const uploadsDir = path.join(import.meta.dirname, "..", "uploads");
+import {
+  cloudinaryUploader,
+  handleCloudinaryUpload,
+} from "../middlewares/cloudinary.js";
 
 export const getOne = (Model) => async (req, res, next) => {
   try {
@@ -45,11 +44,8 @@ export const getAll = (Model) => async (req, res, next) => {
 
 export const createOne = (Model) => async (req, res, next) => {
   try {
-    let body = { ...req.body };
-
-    if (req.file) {
-      body.image = `${process.env.SERVER_URL}/uploads/${req.file.filename}`;
-    }
+    const body = { ...req.body };
+    if (req.file) body.image = await handleCloudinaryUpload(req.file.buffer);
 
     const data = await Model.create(body);
 
@@ -64,15 +60,12 @@ export const createOne = (Model) => async (req, res, next) => {
 export const updateOne = (Model) => async (req, res, next) => {
   try {
     const { id } = req.params;
-    let body = { ...req.body };
-
+    const body = { ...req.body };
     const prevData = await Model.findById(id);
 
     if (req.file) {
-      body.image = `${process.env.SERVER_URL}/uploads/${req.file.filename}`;
-      await DELETE_PROMISE(
-        path.join(uploadsDir, path.basename(prevData.image))
-      );
+      body.image = await handleCloudinaryUpload(req.file.buffer);
+      if (prevData.image) await cloudinaryUploader.destroy(prevData.image);
     }
 
     const data = await Model.findByIdAndUpdate(id, body, { new: true });
@@ -90,11 +83,7 @@ export const deleteOne = (Model) => async (req, res, next) => {
     const { id } = req.params;
     const prevData = await Model.findById(id);
 
-    if (prevData.image) {
-      await DELETE_PROMISE(
-        path.join(uploadsDir, path.basename(prevData.image))
-      );
-    }
+    if (prevData.image) await cloudinaryUploader.destroy(prevData.image);
 
     await Model.findByIdAndDelete(id);
     return res

@@ -64,9 +64,9 @@ li {
 }
 
 a:hover,
-li:hover,
+svg:hover,
 button:hover,
-.label:hover {
+label:hover {
   cursor: pointer;
 }
 
@@ -77,6 +77,7 @@ a {
 
   &:hover {
     color: var(--clr-primary);
+    scale: 1.1;
   }
 
   &.active {

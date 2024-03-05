@@ -2,7 +2,7 @@ import axios from "axios";
 import { store } from "../services/store.js";
 import { refreshToken } from "@app/services/authSlice.js";
 
-const BASE_URL = import.meta.env.VITE_SERVER_URL;
+export const BASE_URL = import.meta.env.VITE_SERVER_URL;
 
 export const publicAxios = axios.create({
   baseURL: BASE_URL,

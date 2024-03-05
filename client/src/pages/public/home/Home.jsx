@@ -3,7 +3,7 @@ import "./home.scss";
 import profile from "@assets/img/pfp.jpg";
 import * as SocialIcon from "@assets/icons/SocialIcons.jsx";
 import * as ButtonIcon from "@assets/icons/ButtonIcons.jsx";
-import cv from "@assets/vishalCv.pdf";
+import cv from "@assets/CV_vishal.pdf";
 import useTyping from "@components/TextTyping.jsx";
 import Redirect from "@components/Redirect.jsx";
 import Navlink from "@components/Navlink.jsx";

@@ -3,7 +3,7 @@ import "./contact.scss";
 import "@components/form/form.scss";
 import { useDispatch } from "react-redux";
 import Redirect from "@components/Redirect.jsx";
-import Input from "@components/Input.jsx";
+import Input from "@src/components/input/Input.jsx";
 import { Gmail, Whatsapp, Messenger } from "@assets/icons/SocialIcons.jsx";
 import { Info, Send, Subject } from "@assets/icons/ButtonIcons.jsx";
 import Button from "@src/components/button/Button.jsx";

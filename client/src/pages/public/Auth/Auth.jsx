@@ -1,8 +1,7 @@
 import React from "react";
-import "@components/form/form.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Input from "@components/Input.jsx";
+import Input from "@src/components/input/Input.jsx";
 import Button from "@src/components/button/Button.jsx";
 import { login } from "@app/services/authSlice.js";
 import { Gmail } from "@assets/icons/SocialIcons.jsx";
@@ -11,7 +10,7 @@ import { Info, Login, Password } from "@assets/icons/ButtonIcons.jsx";
 function Auth() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { accessToken, status } = useSelector((state) => state.auth);
+  const { status } = useSelector((state) => state.auth);
 
   const INPUTS = [
     {

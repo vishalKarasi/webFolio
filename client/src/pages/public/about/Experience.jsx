@@ -5,45 +5,37 @@ import { getExperience } from "@app/services/experienceSlice.js";
 
 function Experience() {
   const dispatch = useDispatch();
-  const { EXPERIENCES, status } = useSelector((state) => state.experience);
+  const { EXPERIENCES, status, message } = useSelector(
+    (state) => state.experience
+  );
+
+  function FDate(date) {
+    const options = { day: "2-digit", month: "short", year: "numeric" };
+    return new Date(date).toLocaleDateString(undefined, options);
+  }
+
+  const experience = EXPERIENCES.map((experience) => {
+    return (
+      <article key={experience.id}>
+        <img src={experience.image} alt="" />
+        <p label="Company:">{experience.company}</p>
+        <p label="Positon:">{experience.position}</p>
+        <p label="Technologies:">{experience.technologies}</p>
+        <p label="StartDate:">{FDate(experience.startDate)}</p>
+        <p label="StartDate:">{FDate(experience.endDate)}</p>
+      </article>
+    );
+  });
 
   useEffect(() => {
     dispatch(getExperience());
   }, [dispatch]);
   return (
     <>
-      <h1>Expertise</h1>
-      {EXPERIENCES.length === 0 ? (
-        <Model type="error" messaage="No Experience :(" />
-      ) : (
-        EXPERIENCES.map((experience) => {
-          return (
-            <article key={experience.id}>
-              <img src={experience.image} alt="" />
-              <div>
-                <label>Company:</label>
-                <p>{experience.company}</p>
-              </div>
-              <div>
-                <label>Position:</label>
-                <p>{experience.position}</p>
-              </div>
-              <div>
-                <label>Technologies:</label>
-                <p>{experience.technologies}</p>
-              </div>
-              <div>
-                <label>StartData:</label>
-                <p>{experience.startDate}</p>
-              </div>
-              <div>
-                <label>EndDate:</label>
-                <p>{experience.endDate}</p>
-              </div>
-            </article>
-          );
-        })
-      )}
+      {status === "loading" && <Model type="loading" />}
+      <h1>Experience</h1>
+      {status === "success" && experience}
+      {status === "error" && <Model type="error" messaage={message} />}
     </>
   );
 }

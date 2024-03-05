@@ -10,10 +10,12 @@ function Tabs({ tabs }) {
     <>
       <nav className="tabs">
         {tabs.map((tab) => (
-          <Link key={tab.label} onClick={() => setActiveTab(tab.label)}>
-            {tab.icon}
-            <label>{tab.label}</label>
-          </Link>
+          <li key={tab.label}>
+            <Link onClick={() => setActiveTab(tab.label)}>
+              {tab.icon}
+              <label>{tab.label}</label>
+            </Link>
+          </li>
         ))}
       </nav>
       {activeContent && (

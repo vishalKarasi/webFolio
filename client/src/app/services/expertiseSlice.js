@@ -6,6 +6,8 @@ import {
 } from "@app/api/expertiseApi.js";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../api/serverApi.js";
+import { CacheService } from "./caching.js";
 
 const initialState = {
   EXPERTISES: [],
@@ -15,7 +17,11 @@ const initialState = {
 
 export const getExpertise = createAsyncThunk("expertise/get", async () => {
   try {
+    const cacheKey = `${BASE_URL}/expertise`;
+    const cachedExpertise = CacheService.get(cacheKey);
+    if (cachedExpertise) return cachedExpertise;
     const { data } = await getExpertiseApi();
+    CacheService.set(cacheKey, data);
     return data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -72,7 +78,6 @@ export const expertiseSlice = createSlice({
         state.status = "success";
         state.message = payload.message;
         state.EXPERTISES = payload.data;
-        toast.success(state.message);
       })
       .addCase(getExpertise.rejected, (state, { error }) => {
         state.status = "error";

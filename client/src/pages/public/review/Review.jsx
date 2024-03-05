@@ -13,24 +13,26 @@ import Model from "@src/components/model/Model.jsx";
 function Review() {
   const dispatch = useDispatch();
   const { form } = useSelector((state) => state.ui);
-  const { REVIEWS } = useSelector((state) => state.review);
+  const { REVIEWS, status, message } = useSelector((state) => state.review);
 
   useEffect(() => {
     dispatch(getReview());
   }, [dispatch]);
 
+  const reviews = (
+    <Carousel>
+      {REVIEWS.map((review) => (
+        <ReviewCard {...review} key={review.id} />
+      ))}
+    </Carousel>
+  );
+
   return (
     <main id="review">
       <h1>Review</h1>
-      {REVIEWS.length === 0 ? (
-        <Model type="error" messaage="No Reviews" />
-      ) : (
-        <Carousel>
-          {REVIEWS.map((review) => (
-            <ReviewCard {...review} key={review.id} />
-          ))}
-        </Carousel>
-      )}
+      {status === "loading" && <Model type="loading" />}
+      {status === "success" && reviews}
+      {status === "error" && <Model type="error" messaage={message} />}
       <div className="flex">
         <Button
           icon={<Add />}

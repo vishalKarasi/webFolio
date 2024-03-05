@@ -6,6 +6,8 @@ import {
 } from "@app/api/projectApi.js";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import { CacheService } from "./caching.js";
+import { BASE_URL } from "../api/serverApi.js";
 
 const initialState = {
   PROJECTS: [],
@@ -15,7 +17,11 @@ const initialState = {
 
 export const getProject = createAsyncThunk("project/get", async () => {
   try {
+    const cacheKey = `${BASE_URL}/project`;
+    const cachedProject = CacheService.get(cacheKey);
+    if (cachedProject) return cachedProject;
     const { data } = await getProjectApi();
+    CacheService.set(cacheKey, data);
     return data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -69,7 +75,6 @@ export const projectSlice = createSlice({
         state.status = "success";
         state.message = payload.message;
         state.PROJECTS = payload.data;
-        toast.success(state.message);
       })
       .addCase(getProject.rejected, (state, { error }) => {
         state.status = "error";

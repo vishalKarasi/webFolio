@@ -1,3 +1,4 @@
+import "./input.scss";
 import React, { memo, useState } from "react";
 
 function Input(props) {

@@ -13,8 +13,8 @@ const Work = lazy(() => import("./public/work/Work.jsx"));
 const Service = lazy(() => import("./public/service/Service.jsx"));
 const Review = lazy(() => import("./public/review/Review.jsx"));
 const Contact = lazy(() => import("./public/contact/Contact.jsx"));
-const PageNotFound = lazy(() => import("./PageNotFound.jsx"));
 
+const PageNotFound = lazy(() => import("./PageNotFound.jsx"));
 const Admin = lazy(() => import("./private/Admin.jsx"));
 const EditExperience = lazy(() => import("./private/EditExperience.jsx"));
 const EditExpertise = lazy(() => import("./private/EditExpertise.jsx"));
@@ -42,7 +42,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
         </Route>
         <Route path="/admin" element={<PrivateRoute />}>
-          <Route exact index element={<Admin />} />
+          <Route index element={<Admin />} />
           <Route path="editExperience" element={<EditExperience />} />
           <Route path="editExpertise" element={<EditExpertise />} />
           <Route path="editProject" element={<EditProject />} />

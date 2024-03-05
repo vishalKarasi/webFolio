@@ -1,22 +1,21 @@
 table {
-  width: 100%;
-  border-spacing: 1em;
-
   th {
     display: none;
+    color: var(--clr-primary);
+    background-color: var(--clr-btn);
   }
 
   tr {
     background-color: var(--clr-box);
-
-    &:nth-child(2n) {
-      background-color: var(--clr-btn);
-    }
   }
 
   td {
     display: flex;
+    text-wrap: wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
     padding: 0.5em;
+    font-size: 0.75em;
 
     &:last-child {
       button {
@@ -27,13 +26,13 @@ table {
     &::before {
       content: attr(head);
       color: var(--clr-primary);
-      min-width: 30%;
-      padding-right: 1em;
+      min-width: 25%;
+      margin-right: 0.75em;
     }
   }
 }
 
-@media (1024px < width <= 1500px) {
+@media (1240px < width <= 1500px) {
   table {
     border-spacing: 0.2em;
     th {
@@ -45,7 +44,7 @@ table {
       text-align: center;
 
       &::before {
-        content: none !important;
+        content: none;
       }
 
       button:last-child {
