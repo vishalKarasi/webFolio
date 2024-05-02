@@ -111,6 +111,40 @@ span {
   color: var(--clr-primary);
 }
 
+//////////////////////////////////////  Animation  //////////////////////////////////////
+@keyframes swiperIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+article {
+  animation: scaleIn 1.5s ease-in-out;
+}
+
+header,
+main,
+footer {
+  animation: swiperIn 0.5s ease-in-out;
+}
+
+
+//////////////////////////////////////  Responsive  //////////////////////////////////////
+///
 @media (800px < width <= 1500px) {
   main {
     min-height: calc(100vh - 3.75em);

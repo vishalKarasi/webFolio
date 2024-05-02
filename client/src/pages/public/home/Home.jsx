@@ -3,7 +3,7 @@ import "./home.scss";
 import profile from "@assets/img/pfp.jpg";
 import * as SocialIcon from "@assets/icons/SocialIcons.jsx";
 import * as ButtonIcon from "@assets/icons/ButtonIcons.jsx";
-import cv from "@assets/CV_vishal.pdf";
+import resume from "@assets/Vishal-Karasi-Resume.pdf";
 import useTyping from "@components/TextTyping.jsx";
 import Redirect from "@components/Redirect.jsx";
 import Navlink from "@components/Navlink.jsx";
@@ -54,7 +54,7 @@ function Home() {
           />
           <Navlink path="/work" label="Project" icon={<ButtonIcon.Project />} />
 
-          <a href={cv} download>
+          <a href={resume} download>
             <ButtonIcon.Download />
             <p>Download CV</p>
           </a>

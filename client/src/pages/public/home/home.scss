@@ -8,9 +8,9 @@
 
   img {
     border-radius: 100vmax;
-    width: 70%;
     aspect-ratio: 1/1;
     object-fit: contain;
+    padding: 2em;
   }
 
   .info {
@@ -63,6 +63,7 @@
     flex-direction: row;
 
     & > * {
+      width: 50%;
       scale: 0.9;
     }
 
