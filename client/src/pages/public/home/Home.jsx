@@ -1,6 +1,6 @@
 import React from "react";
 import "./home.scss";
-import profile from "@assets/img/pfp.jpg";
+import profile from "@assets/img/pfp.jpeg";
 import * as SocialIcon from "@assets/icons/SocialIcons.jsx";
 import * as ButtonIcon from "@assets/icons/ButtonIcons.jsx";
 import resume from "@assets/Vishal-Karasi-Resume.pdf";
